@@ -17,10 +17,10 @@
         "laravel/vapor-core": "^2.33",
         "laravel/vapor-ui": "^1.7",
         "mollie/laravel-mollie": "^2.25",
-        "stephenkhoo/laravel-vapor-deploy-helper": "^1.0"
+        "stephenkhoo/laravel-vapor-deploy-helper": "^1.0",
+        "barryvdh/laravel-ide-helper": "^2.13"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.25",

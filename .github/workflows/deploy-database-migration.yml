@@ -1,4 +1,4 @@
-name: Deploy Database Migration
+name: deploy database migration
 
 on:
   workflow_dispatch:
