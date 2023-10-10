@@ -44,6 +44,12 @@ return [
             'throw' => false,
         ],
 
+        'tmp' => [
+            'driver' => 'local',
+            'root' => env('AWS_USE_LAMBDA_STORAGE', true) ? '/tmp' : storage_path('app/temp'),
+            'url' => env('AWS_USE_LAMBDA_STORAGE', true) ? '/tmp' : storage_path('app/temp'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
