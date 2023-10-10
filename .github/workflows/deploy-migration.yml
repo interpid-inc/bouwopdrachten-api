@@ -1,0 +1,50 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    branches: [ production, staging ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Install Github Action Checkout
+        uses: actions/checkout@v3
+
+      - name: 📥 Install Docker Layer Caching
+        uses: docker/setup-buildx-action@v1
+
+      - name: 📥 Install QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: arm64
+
+      - name: 📥 Install Node.js v16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 📥 Install Yarn Dependencies
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
+      - name: 📥 Install PHP v8.2 and Composer v2
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          tools: composer:v2
+          coverage: none
+
+      - name: 📦 Install Vapor CLI
+        run: composer global require laravel/vapor-cli
+
+      - name: 📦 Install Composer Dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          composer-options: "--no-interaction --prefer-dist --optimize-autoloader --no-progress --no-ansi --no-dev --classmap-authoritative"
+
+      - name: ☁️ Deploy Environment
+        run: vapor command ${{ github.ref_name }} --message="php artisan migrate:fresh --seed --force"
+        env:
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
