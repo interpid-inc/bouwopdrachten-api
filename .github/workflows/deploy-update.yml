@@ -5,7 +5,7 @@ on:
     branches: [ production, staging ]
 
 jobs:
-  deploy:
+  deploy-update:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Install Github Action Checkout

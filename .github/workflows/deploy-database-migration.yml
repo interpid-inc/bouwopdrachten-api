@@ -5,7 +5,7 @@ on:
     branches: [ production, staging ]
 
 jobs:
-  deploy:
+  deploy-database-migration:
     runs-on: ubuntu-latest
     steps:
       - name: 📥 Install Github Action Checkout
@@ -44,7 +44,12 @@ jobs:
         with:
           composer-options: "--no-interaction --prefer-dist --optimize-autoloader --no-progress --no-ansi --no-dev --classmap-authoritative"
 
-      - name: ☁️ Deploy Environment
-        run: vapor command ${{ github.ref_name }} --message="php artisan migrate:fresh --seed --force"
+      - name: 🗄️ Running Database Migration
+        run: vapor command ${{ github.ref_name }} --command="php artisan migrate:fresh --force"
+        env:
+          VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
+
+      - name: 🗂️ Running Database Seeder
+        run: vapor command ${{ github.ref_name }} --command="php artisan db:seed --force"
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
