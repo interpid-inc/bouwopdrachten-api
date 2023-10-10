@@ -2,34 +2,52 @@ name: Deploy
 
 on:
   push:
-    branches: [ production ]
+    branches: [ production, staging ]
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: 📥 Install Github Action Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: 📥 Install Docker Layer Caching
+        uses: docker/setup-buildx-action@v1
+
+      - name: 📥 Install QEMU
+        uses: docker/setup-qemu-action@v2
+        with:
+          platforms: arm64
+
+      - name: 📥 Install Node.js v16
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: Setup PHP
+      - name: 📥 Install Yarn Dependencies
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
+      - name: 📥 Install PHP v8.2 and Composer v2
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
           tools: composer:v2
           coverage: none
 
-      - name: Require Vapor CLI
+      - name: 📦 Install Vapor CLI
         run: composer global require laravel/vapor-cli
 
-      - name: Install Project Dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+      - name: 📦 Install Composer Dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          composer-options: "--no-interaction --prefer-dist --optimize-autoloader --no-progress --no-ansi --no-dev --classmap-authoritative"
 
-      - name: Deploy Environment
+      - name: 🎨 Build Frontend Dependencies
+        run: yarn build
+
+      - name: ☁️ Deploy Environment
         run: vapor deploy ${{ github.ref_name }} --commit="${{ github.event.head_commit.id }}" --message="${{ github.event.head_commit.message }}"
         env:
           VAPOR_API_TOKEN: ${{ secrets.VAPOR_API_TOKEN }}
