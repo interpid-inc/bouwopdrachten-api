@@ -1,5 +1,5 @@
-[![Laravel](https://github.com/interpid-inc/bouwopdrachten-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/interpid-inc/bouwopdrachten-api/actions/workflows/deploy.yml)
-<a href="https://bouwopdrachten.interp.id">
+[![Laravel](https://github.com/interpid-inc/bouwopdrachten-api/actions/workflows/deploy-update.yml/badge.svg)](https://github.com/interpid-inc/bouwopdrachten-api/actions/workflows/deploy-update.yml)
+<a href="https://bouwopdrachten-api.interp.id">
     <img alt="Staging" src="https://img.shields.io/website?label=staging&up_message=deployed&url=https%3A%2F%2Fbouwopdrachten.interp.id">
 </a>
 <a href="https://npmjs.com">
