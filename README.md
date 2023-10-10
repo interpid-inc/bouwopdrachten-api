@@ -1,4 +1,4 @@
-[![Laravel](https://github.com/interpid-inc/bouwopdrachten-api/actions/workflows/build.yml/badge.svg?branch=development)](https://github.com/interpid-inc/bouwopdrachten-api/actions/workflows/build.yml)
+[![Laravel](https://github.com/interpid-inc/bouwopdrachten-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/interpid-inc/bouwopdrachten-api/actions/workflows/deploy.yml)
 <a href="https://bouwopdrachten.interp.id">
     <img alt="Staging" src="https://img.shields.io/website?label=staging&up_message=deployed&url=https%3A%2F%2Fbouwopdrachten.interp.id">
 </a>
@@ -9,8 +9,8 @@
     <img alt="PHP Version" src="https://img.shields.io/badge/php-%3E%3D%208.2-blue">
 </a>
 
-## :satellite: bouwopdrachten
+## :satellite: bouwopdrachten-api
 
-The RESTful API for Bouwopdrachten.
+The RESTful API for Bouwopdrachten platform.
 
 > Written in [PHP 8.2](https://php.net) using [Laravel](https://laravel.com). Powered by [Cloudflare](https://cloudflare.com), [Vapor](https://vapor.laravel.com), and [PlanetScale](https://planetscale.com).

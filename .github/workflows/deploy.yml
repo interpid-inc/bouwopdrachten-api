@@ -44,9 +44,6 @@ jobs:
         with:
           composer-options: "--no-interaction --prefer-dist --optimize-autoloader --no-progress --no-ansi --no-dev --classmap-authoritative"
 
-      - name: 🎨 Build Frontend Dependencies
-        run: yarn build
-
       - name: ☁️ Deploy Environment
         run: vapor deploy ${{ github.ref_name }} --commit="${{ github.event.head_commit.id }}" --message="${{ github.event.head_commit.message }}"
         env:
