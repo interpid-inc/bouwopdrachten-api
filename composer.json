@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/telescope": "^4.16",
         "laravel/tinker": "^2.8",
+        "laravel/vapor-cli": "^1.60",
         "laravel/vapor-core": "^2.33",
         "laravel/vapor-ui": "^1.7",
         "mollie/laravel-mollie": "^2.25",
